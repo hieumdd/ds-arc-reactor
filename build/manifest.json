@@ -1,0 +1,24 @@
+{
+  "name": "Arc Reactor Chart",
+  "organization": "Eaglytics",
+  "description": "Arc Reactor Chart",
+  "logoUrl": "https://logo",
+  "organizationUrl": "https://url",
+  "supportUrl": "https://url",
+  "privacyPolicyUrl": "https://url",
+  "termsOfServiceUrl": "https://url",
+  "packageUrl": "https://url",
+  "devMode": false,
+  "components": [
+    {
+      "name": "Arc Reactor Chart",
+      "description": "Arc Reactor Chart",
+      "iconUrl": "https://url",
+      "resource": {
+        "js": "gs://arc-reactor-chart/v2/prod/index.js",
+        "config": "gs://arc-reactor-chart/v2/prod/index.json",
+        "css": "gs://arc-reactor-chart/v2/prod/index.css"
+      }
+    }
+  ]
+}

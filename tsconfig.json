@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist/",
+        "module": "es6",
+        "target": "es2019",
+        "allowJs": true,
+        "moduleResolution": "node",
+        "sourceMap": true,
+    }
+}

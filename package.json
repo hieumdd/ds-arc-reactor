@@ -1,0 +1,40 @@
+{
+  "dsccViz": {
+    "gcsDevBucket": "gs://arc-reactor-chart/v2/dev",
+    "gcsProdBucket": "gs://arc-reactor-chart/v2/prod",
+    "tsFile": "index.ts",
+    "jsonFile": "index.json",
+    "cssFile": "index.css",
+    "print": "printMessage.js"
+  },
+  "scripts": {
+    "build:dev": "dscc-scripts viz build -d dev",
+    "build:prod": "dscc-scripts viz build -d prod",
+    "push:dev": "dscc-scripts viz push -d dev",
+    "push:prod": "dscc-scripts viz push -d prod",
+    "update_message": "dscc-scripts viz update_message -f object",
+    "start": "dscc-scripts viz start"
+  },
+  "devDependencies": {
+    "@google/dscc": "^0.3.17",
+    "@google/dscc-scripts": "^1.0.17",
+    "@types/chart.js": "^2.9.35",
+    "@types/d3-interpolate": "^3.0.1",
+    "@types/lodash-es": "^4.17.6",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "copy-webpack-plugin": "^4.6.0",
+    "eslint": "^7.31.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-prettier": "^3.4.0",
+    "prettier": "2.3.2",
+    "ts-loader": "^8.2.0",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "chart.js": "^2.9.4",
+    "chartjs-plugin-piechart-outlabels": "^0.1.4",
+    "d3-interpolate": "^3.0.1",
+    "lodash-es": "^4.17.21"
+  }
+}
