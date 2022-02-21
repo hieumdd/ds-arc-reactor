@@ -9,26 +9,6 @@ import zip from 'lodash-es/zip';
 
 import * as local from './localMessage';
 
-type Field = {
-    id: string;
-    name: string;
-    type: string;
-    concept: string;
-};
-
-type Data = {
-    tables: {
-        DEFAULT: {
-            dimID: string[];
-            metricID: (number | null)[];
-        }[];
-    };
-    fields: {
-        dimID: Field[];
-        metricID: Field[];
-    };
-};
-
 const margin = {
     top: 10,
     bottom: 10,
@@ -57,7 +37,7 @@ const itp = (values: number[]) => {
     return normalized.map((val) => interpolator(val));
 };
 
-const drawViz = (data: Data) => {
+const drawViz = (data: dscc.ObjectFormat) => {
     const ctx = canvasElement.getContext('2d');
 
     ctx.clearRect(0, 0, canvasElement.width, canvasElement.height);
@@ -97,7 +77,7 @@ const drawViz = (data: Data) => {
         type: 'doughnut',
         data: {
             labels: data.tables.DEFAULT.map(({ dimID }) => dimID).map(
-                ([dimID]) => dimID,
+                ([dimID]) => dimID.toString(),
             ),
             datasets,
         },
@@ -132,8 +112,8 @@ const drawViz = (data: Data) => {
 const LOCAL = true;
 
 if (LOCAL) {
+    // @ts-expect-error: Custom Type
     drawViz(local.message);
 } else {
-    // @ts-expect-error: Custom Type
     dscc.subscribeToData(drawViz, { transform: dscc.objectTransform });
 }
