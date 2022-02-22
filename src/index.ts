@@ -1,6 +1,6 @@
 import * as dscc from '@google/dscc';
 
-import * as Chart from 'chart.js';
+import Chart from 'chart.js';
 import 'chartjs-plugin-piechart-outlabels';
 
 import * as d3Interpolate from 'd3-interpolate';
@@ -19,11 +19,14 @@ const margin = {
 const height = dscc.getHeight() - margin.top - margin.bottom;
 const width = dscc.getWidth() - margin.left - margin.right;
 
+
 const canvasElement = document.createElement('canvas');
 canvasElement.id = 'chart';
 canvasElement.height = height;
 canvasElement.width = width;
 document.body.appendChild(canvasElement);
+
+let chart: Chart;
 
 const lowestHex = '#ffc3c5';
 const lowestRGB = 'rgb(255, 195, 197)';
@@ -73,7 +76,11 @@ const drawViz = (data: dscc.ObjectFormat) => {
         }),
     );
 
-    new Chart(ctx, {
+    if (chart) {
+        chart.destroy();
+    }
+
+    chart = new Chart(ctx, {
         type: 'doughnut',
         data: {
             labels: data.tables.DEFAULT.map(({ dimID }) => dimID).map(
@@ -91,6 +98,8 @@ const drawViz = (data: dscc.ObjectFormat) => {
                     bottom: 50,
                 },
             },
+            responsive: true,
+            maintainAspectRatio: true,
             legend: {
                 display: false,
             },
