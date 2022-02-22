@@ -9,21 +9,6 @@ import zip from 'lodash-es/zip';
 
 import * as local from './localMessage';
 
-const height = dscc.getHeight();
-const width = dscc.getWidth();
-
-const container = document.createElement('div')
-document.body.appendChild(container)
-
-
-const canvasElement = document.createElement('canvas');
-canvasElement.id = 'chart';
-canvasElement.height = height;
-canvasElement.width = width;
-container.appendChild(canvasElement);
-
-let chart: Chart;
-
 const lowestHex = '#ffc3c5';
 const lowestRGB = 'rgb(255, 195, 197)';
 const highestHex = '#ff0008';
@@ -37,8 +22,18 @@ const itp = (values: number[]) => {
 };
 
 const drawViz = (data: dscc.ObjectFormat) => {
-    const ctx = canvasElement.getContext('2d');
+    const height = dscc.getHeight();
+    const width = dscc.getWidth();
 
+    document.body.replaceChildren();
+
+    const canvasElement = document.createElement('canvas');
+    canvasElement.id = 'chart';
+    canvasElement.height = height;
+    canvasElement.width = width;
+    document.body.appendChild(canvasElement);
+
+    const ctx = canvasElement.getContext('2d');
     ctx.clearRect(0, 0, canvasElement.width, canvasElement.height);
 
     const metricValue = zip(
@@ -72,11 +67,7 @@ const drawViz = (data: dscc.ObjectFormat) => {
         }),
     );
 
-    if (chart) {
-        chart.destroy();
-    }
-
-    chart = new Chart(ctx, {
+    const _ = new Chart(ctx, {
         type: 'doughnut',
         data: {
             labels: data.tables.DEFAULT.map(({ dimID }) => dimID).map(
@@ -114,7 +105,7 @@ const drawViz = (data: dscc.ObjectFormat) => {
     });
 };
 
-const LOCAL = true;
+const LOCAL = false;
 
 if (LOCAL) {
     // @ts-expect-error: Custom Type
