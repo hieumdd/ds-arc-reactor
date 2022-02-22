@@ -1,4 +1,5 @@
 const path = require('path');
+require('webpack-dev-server');
 const fs = require('fs');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
@@ -42,7 +43,7 @@ module.exports = [
         },
         plugins: plugins,
         resolve: {
-            extensions: ['.ts'],
+            extensions: ['.ts', '.js'],
         },
     },
 ];

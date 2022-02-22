@@ -1,19 +1,19 @@
 {
-  "name": "Arc Reactor Chart",
+  "name": "Arc Reactor Chart v2.0",
   "organization": "Eaglytics",
   "description": "Arc Reactor Chart",
-  "logoUrl": "https://logo",
-  "organizationUrl": "https://url",
-  "supportUrl": "https://url",
-  "privacyPolicyUrl": "https://url",
-  "termsOfServiceUrl": "https://url",
-  "packageUrl": "https://url",
+  "logoUrl": "https://i.imgur.com/WqMISXY.png",
+  "organizationUrl": "https://eaglytics-co.com/",
+  "supportUrl": "https://github.com/hieumdd/ds-arc-reactor",
+  "privacyPolicyUrl": "https://eaglytics-co.com/",
+  "termsOfServiceUrl": "https://eaglytics-co.com/",
+  "packageUrl": "https://github.com/hieumdd/ds-arc-reactor",
   "devMode": "DEVMODE_BOOL",
   "components": [
     {
-      "name": "Arc Reactor Chart",
+      "name": "Arc Reactor Chart v2.0",
       "description": "Arc Reactor Chart",
-      "iconUrl": "https://url",
+      "iconUrl": "https://i.imgur.com/WqMISXY.png",
       "resource": {
         "js": "YOUR_GCS_BUCKET/index.js",
         "config": "YOUR_GCS_BUCKET/index.json",

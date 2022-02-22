@@ -1,6 +1,6 @@
 import * as dscc from '@google/dscc';
 
-import * as Chart from 'chart.js';
+import Chart from 'chart.js';
 import 'chartjs-plugin-piechart-outlabels';
 
 import * as d3Interpolate from 'd3-interpolate';
@@ -8,22 +8,6 @@ import * as d3Interpolate from 'd3-interpolate';
 import zip from 'lodash-es/zip';
 
 import * as local from './localMessage';
-
-const margin = {
-    top: 10,
-    bottom: 10,
-    right: 10,
-    left: 10,
-};
-
-const height = dscc.getHeight() - margin.top - margin.bottom;
-const width = dscc.getWidth() - margin.left - margin.right;
-
-const canvasElement = document.createElement('canvas');
-canvasElement.id = 'chart';
-canvasElement.height = height;
-canvasElement.width = width;
-document.body.appendChild(canvasElement);
 
 const lowestHex = '#ffc3c5';
 const lowestRGB = 'rgb(255, 195, 197)';
@@ -38,8 +22,18 @@ const itp = (values: number[]) => {
 };
 
 const drawViz = (data: dscc.ObjectFormat) => {
-    const ctx = canvasElement.getContext('2d');
+    const height = dscc.getHeight();
+    const width = dscc.getWidth();
 
+    document.body.replaceChildren();
+
+    const canvasElement = document.createElement('canvas');
+    canvasElement.id = 'chart';
+    canvasElement.height = height;
+    canvasElement.width = width;
+    document.body.appendChild(canvasElement);
+
+    const ctx = canvasElement.getContext('2d');
     ctx.clearRect(0, 0, canvasElement.width, canvasElement.height);
 
     const metricValue = zip(
@@ -73,7 +67,7 @@ const drawViz = (data: dscc.ObjectFormat) => {
         }),
     );
 
-    new Chart(ctx, {
+    const _ = new Chart(ctx, {
         type: 'doughnut',
         data: {
             labels: data.tables.DEFAULT.map(({ dimID }) => dimID).map(
@@ -91,6 +85,8 @@ const drawViz = (data: dscc.ObjectFormat) => {
                     bottom: 50,
                 },
             },
+            responsive: true,
+            maintainAspectRatio: true,
             legend: {
                 display: false,
             },
@@ -109,7 +105,7 @@ const drawViz = (data: dscc.ObjectFormat) => {
     });
 };
 
-const LOCAL = true;
+const LOCAL = false;
 
 if (LOCAL) {
     // @ts-expect-error: Custom Type
