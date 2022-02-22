@@ -9,22 +9,18 @@ import zip from 'lodash-es/zip';
 
 import * as local from './localMessage';
 
-const margin = {
-    top: 10,
-    bottom: 10,
-    right: 10,
-    left: 10,
-};
+const height = dscc.getHeight();
+const width = dscc.getWidth();
 
-const height = dscc.getHeight() - margin.top - margin.bottom;
-const width = dscc.getWidth() - margin.left - margin.right;
+const container = document.createElement('div')
+document.body.appendChild(container)
 
 
 const canvasElement = document.createElement('canvas');
 canvasElement.id = 'chart';
 canvasElement.height = height;
 canvasElement.width = width;
-document.body.appendChild(canvasElement);
+container.appendChild(canvasElement);
 
 let chart: Chart;
 
